@@ -1,0 +1,71 @@
+body {
+    background-color: #090600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: coral;
+    min-height: 100%;
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-areas: "header header header"
+                         "left centre right"
+                         "footer footer footer";
+    grid-template-columns: 1fr 2fr 1fr; /* defines column widths */
+    grid-template-rows: auto 1fr auto; /* defines row heights */
+    min-height: 100vh;
+}
+
+.header-menu {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+.header-menu > a {
+    grid-area: header;
+    color: coral;
+    text-align: center;
+    text-decoration: none;
+    background: transparent;
+    font-size: 1.2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+h1 {
+    font-size: 4em;
+    margin: 0;
+}
+
+.main-content {
+    grid-area: centre;
+    padding: 2em;
+}
+
+.explore-button {
+    display: inline-block;
+    background-color: coral;
+    color: #090600;
+    border: black 2px solid;
+    padding: 0.8em 1.5em;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 1em;
+}
+
+.explore-button:hover {
+    background-color: #ff7f50;
+}
+
+.footer {
+    grid-area: footer;
+    text-align: center;
+    background-color: #090600;
+    color: coral;
+    padding: 1em 0;
+}
