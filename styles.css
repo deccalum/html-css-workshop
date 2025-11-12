@@ -1,9 +1,23 @@
+:root { --content-max: min(72rem, 70ch); }
+
+html { height: 100%; }
+
 body {
     background-color: #090600;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: coral;
-    min-height: 100%;
+    min-height: 100vh;
+    min-height: 100 dvh;
     margin: 0;
+}
+
+hr {
+    width: 100%;
+    height: 0;
+    border: none;
+    border-top: 4px solid coral; /* thickness and color */
+    margin: 2em 0;               /* vertical spacing */
+    display: block;
 }
 
 .container {
@@ -11,16 +25,17 @@ body {
     grid-template-areas: "header header header"
                          "left centre right"
                          "footer footer footer";
-    grid-template-columns: 1fr 2fr 1fr; /* defines column widths */
+    grid-template-columns: minmax(0, 0.1fr) minmax(0, 2fr) minmax(0, 1fr); /* defines column widths */
     grid-template-rows: auto 1fr auto; /* defines row heights */
-    min-height: 100vh;
 }
 
 .header-menu {
     grid-area: header;
     display: flex;
     justify-content: center;
-    gap: 2em;
+    align-items: center;
+    gap: clamp(.5rem, 2vw, 2rem);
+    flex-wrap: wrap;
 }
 
 .header-menu > a {
@@ -29,19 +44,15 @@ body {
     text-align: center;
     text-decoration: none;
     background: transparent;
-    font-size: 1.2em;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    font-size: clamp(1.5em, 3vw, 1.5em);
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 h1 {
-    font-size: 4em;
+    font-size: clamp(2rem, 8vw, 5em);
+    line-height: 1.1;
     margin: 0;
-}
-
-.main-content {
-    grid-area: centre;
-    padding: 2em;
 }
 
 .explore-button {
@@ -52,7 +63,7 @@ h1 {
     padding: 0.8em 1.5em;
     font-size: 1.2em;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 1em;
     text-decoration: none;
     transition: background-color 0.3s ease;
     margin-top: 1em;
@@ -60,6 +71,94 @@ h1 {
 
 .explore-button:hover {
     background-color: #ff7f50;
+}
+
+.main-content {
+    inline-size: min(100%, var(--content-max));
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, 2rem);
+  }
+
+.main-shop {
+    grid-area: centre;
+    padding-inline: clamp(1rem, 3vw, 2rem);
+    padding-block: 2rem;
+    max-width: 90rem;
+    margin-inline: auto;
+}
+
+.product-item {
+    display: grid;
+    grid-template-columns: minmax(10rem, 10rem) minmax(25rem, 50fr);
+    grid-template-areas: 
+        "image title"
+        "image description"
+        "image buttons"
+        "table table";
+    gap: 2rem 2rem;
+    align-items: start;
+    padding: 1.5rem;
+    max-width: 100%;
+    margin-inline: auto;
+}
+
+.product-item h1 {
+    grid-area: title;
+    border-left: coral .5rem solid;
+}
+
+.product-item p {
+    grid-area: description;
+    padding: .5rem;
+    border-left: coral .3rem solid;
+    line-height: 0.95;
+}
+
+button {
+    background-color: coral;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    transition: background 1.0s, background-color 1.0s;
+}
+
+button:hover {
+    background-color: aquamarine;
+    cursor: pointer;
+}
+
+.button-group {
+    border-left: coral .3rem solid;
+    padding: .5rem;
+    display: flex;
+    gap: .25em;
+    text-decoration: none;
+}
+
+table {
+    grid-area: table;
+    table-layout: fixed;
+    border: coral 0.1rem solid;
+    border-collapse: separate;
+}
+
+table th, td {
+    background-color: #1c141d;
+    color: coral;
+    padding: 0.5em;
+    border: coral 0.11rem solid;
+    border-spacing: 0.2rem;
+    text-align: left;
+    text-decoration: none;
+    min-height: 1em;
+    line-height: 0.1;
+}
+
+.product-item img {
+    grid-area: image;
+    width: 90%; 
+    height: auto;
+    object-fit: cover;
 }
 
 .footer {
